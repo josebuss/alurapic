@@ -1,22 +1,21 @@
-import { Component } from '@angular/core';
+import { PhotoService } from './photos/photo/photo.service';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Photo } from './photos/photo/photo';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  photos = [
-    {
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSU5UEdXlZUIis-bycXGz7kswlh7V_jr5MxiF6P7ZxsRuYViU0f",
-      description: "Mago implacavel"
-    }, {
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSCbHlTR8EXLk2pJ5qtHXPtcBq6dpvPrKwB8xvIINDergkyFSA",
-      description: "Mago implacavel 2"
-    },
-    {
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSU5UEdXlZUIis-bycXGz7kswlh7V_jr5MxiF6P7ZxsRuYViU0f",
-      description: "Mago implacavel"
-    }
-  ]
+export class AppComponent implements OnInit {
+
+  photos: Photo[] = [];
+
+  constructor(private service: PhotoService) { }
+
+  ngOnInit(): void {
+    this.service.listFromUser('flavio').subscribe(photos => this.photos = photos);
+  }
 }
