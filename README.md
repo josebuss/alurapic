@@ -1,2 +1,1 @@
-# alurapic
- Aula do Angular Alura
+# Angular parte 1: Fundamentos
